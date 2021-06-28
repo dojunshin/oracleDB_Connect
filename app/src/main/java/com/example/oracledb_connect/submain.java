@@ -15,4 +15,7 @@ public class submain {
     //이게 대충 어떤거냐면 현재 브랜치 상태(TestBranch)에서,
     //Merge into Current 를 마스터에 지정해주면, 두개가 병합됨...
     //일단은 확실한건 아니니 충분한 테스트가 중요함.
+
+    //지금현재마스터상태..
+
 }
