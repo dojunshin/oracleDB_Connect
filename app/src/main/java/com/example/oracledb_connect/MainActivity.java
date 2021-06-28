@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
      * PW : phisu01
      * */
 
-    public static final String test ="TEST";
-
     public static final String Pnuhurl= "http://200.100.1.116:1527/"; //개발기
     public static final int timeout = 5000;
     public static String Verkey="appver";
