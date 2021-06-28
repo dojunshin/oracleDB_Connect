@@ -28,15 +28,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-
     /**
      * TESTDB(개발기)
      * 200.100.1.116:1527
      * ID : testdb
      * PW : phisu01
      * */
-
-    //testBranch??
 
     public static final String Pnuhurl= "http://200.100.1.116:1527/"; //개발기
     public static final int timeout = 5000;
