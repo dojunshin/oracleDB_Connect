@@ -22,4 +22,6 @@ public class submain {
     //ID : ddojuiiii_Dev
     //PW : dojun2029@
 
+    //제대로당겨왓는가 테스트
+
 }
