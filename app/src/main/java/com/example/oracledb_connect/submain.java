@@ -18,4 +18,9 @@ public class submain {
 
     //이걸 어떻게 사용하는지 알아야 집에서도 하겠져..?
 
+    //apk
+    //ID : ddojuiiii_Dev
+    //PW : dojun2029@
+
+    //지금 pnuh_test 맞니?
 }
