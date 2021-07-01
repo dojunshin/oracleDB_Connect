@@ -28,5 +28,7 @@ public class submain {
     //ID : ddojuiiii_Dev
     //PW : dojun2029@
 
+    //마스터에서작업중.
+
 
 }
