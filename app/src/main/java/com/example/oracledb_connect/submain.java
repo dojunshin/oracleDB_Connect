@@ -22,5 +22,4 @@ public class submain {
     //ID : ddojuiiii_Dev
     //PW : dojun2029@
 
-    //지금 pnuh_test 맞니?
 }
