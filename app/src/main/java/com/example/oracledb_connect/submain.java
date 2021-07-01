@@ -11,4 +11,5 @@ public class submain {
 
 
     //지금 핫픽스 상태야 그럼?
+    //그런거지?
 }
