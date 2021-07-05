@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
      * */
 
     public static final String Pnuhurl= "http://200.100.1.116:1527/"; //개발기
+//    public static final String Pnuhurl = "http://127.0.0.1/";
     public static final int timeout = 5000;
     public static String Verkey="appver";
     public static String VerNo="1.0";
@@ -62,10 +63,23 @@ public class MainActivity extends AppCompatActivity {
         return Fulldata;
     }
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        //
+
+
+        RxJava_Task(); //비동기실행.
+    }
+
     Disposable backgroundTask;
 
     private void RxJava_Task() {
-        HashMap<String, String> map = new HashMap<>();
+//        HashMap<String, String> map = new HashMap<>();
         backgroundTask = Observable.fromCallable(() -> {    //fromCallable : 비동기 실행방식
             //doInBackground
             try {
@@ -73,13 +87,17 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return map;
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<HashMap<String, String>>() {
-            @Override
-            public void accept(HashMap<String, String> stringStringHashMap) throws Throwable {
+            return false;
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((result) -> {
+//            @Override
+//            public void accept(HashMap<String, String> stringStringHashMap) throws Throwable {
                 //onPostExecute
                 if(!ErrorCode.equals("")) {
                 //데이터 없음.
+
                 } else {
                     switch(Data_Mode) {
                         case "1":
@@ -91,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 backgroundTask.dispose();
-            }
+//            }
         });
     }
 
@@ -192,13 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 //
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        send1();
-//    }
+
 //
 //    public static void send1() {
 //        JSONArray array = new JSONArray();
@@ -344,3 +356,4 @@ public class MainActivity extends AppCompatActivity {
 //
 //    }
 //}
+
