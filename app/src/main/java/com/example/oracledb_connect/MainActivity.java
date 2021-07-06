@@ -1,11 +1,15 @@
 package com.example.oracledb_connect;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     public static JSONArray ParamsArray;
     public static KEY_DATA Send_Keydata = new KEY_DATA();
 
+
+
     public static class KEY_DATA {
         String ExecuteTypeName="";
         String ParamsArray="";
@@ -64,17 +70,88 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    private FragmentManager fragmentManager;
+    private AFragment fragmentA;
+    private BFragment fragmentB;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fragmentA = new AFragment();
+        fragmentB = new BFragment();
 
-        //
+//        RxJava_Task(); //비동기실행.
+
+        Button buttonA = (Button)findViewById(R.id.btn_fragmentA);
+        Button buttonB = (Button)findViewById(R.id.btn_fragmentB);
 
 
-        RxJava_Task(); //비동기실행.
+        View.OnClickListener BHandler = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.btn_fragmentA:
+                        replaceFragment(1);
+                        break;
+
+                    case R.id.btn_fragmentB:
+                        replaceFragment(2);
+                        break;
+                }
+            }
+        };
+
+        buttonA.setOnClickListener(BHandler);
+        buttonB.setOnClickListener(BHandler);
     }
+
+    public void replaceFragment(int mode) {
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        if(mode == 1) {
+            transaction.replace(R.id.frameLayout, fragmentA);
+            transaction.addToBackStack(null);
+        } else {
+            transaction.replace(R.id.frameLayout, fragmentB);
+            transaction.addToBackStack(null);
+        }
+
+        transaction.commit();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     Disposable backgroundTask;
 
