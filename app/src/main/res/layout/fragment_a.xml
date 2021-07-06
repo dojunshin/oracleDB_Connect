@@ -8,13 +8,22 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:text="Fragment A"
-        android:textSize="50dp"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20dp"
+        tools:ignore="MissingConstraints"/>
+
+    <ListView
+        android:transcriptMode="alwaysScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/popupLV"
+        android:layout_marginBottom="75dp"
+        android:layout_marginTop="210dp"
+        android:dividerHeight="23px">
+
+    </ListView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

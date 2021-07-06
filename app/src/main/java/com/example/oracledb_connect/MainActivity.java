@@ -5,11 +5,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -47,13 +49,17 @@ public class MainActivity extends AppCompatActivity {
     public static String Apikey="apikey";
     public static String Apikeystr="";
 
+    private FragmentManager fragmentManager;
+    private AFragment fragmentA;
+    private BFragment fragmentB;
+
+    Disposable backgroundTask;
+
     public static String ErrorCode;
     public static String Data_Mode;
 
     public static JSONArray ParamsArray;
     public static KEY_DATA Send_Keydata = new KEY_DATA();
-
-
 
     public static class KEY_DATA {
         String ExecuteTypeName="";
@@ -68,13 +74,6 @@ public class MainActivity extends AppCompatActivity {
     public static String REdata(String Fulldata) {
         return Fulldata;
     }
-
-
-
-    private FragmentManager fragmentManager;
-    private AFragment fragmentA;
-    private BFragment fragmentB;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,14 +96,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.btn_fragmentA:
                         replaceFragment(1);
                         break;
-
                     case R.id.btn_fragmentB:
                         replaceFragment(2);
                         break;
                 }
             }
         };
-
         buttonA.setOnClickListener(BHandler);
         buttonB.setOnClickListener(BHandler);
     }
@@ -126,37 +123,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
 
+        final Toast toast = Toast.makeText(getApplicationContext(), "뒤로가기....", Toast.LENGTH_SHORT);
+        toast.show();
 
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 
+        if(fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+            ft.commit();
+        } else {
+            super.onBackPressed();
+            finish();
+        }
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    Disposable backgroundTask;
 
     private void RxJava_Task() {
-//        HashMap<String, String> map = new HashMap<>();
         backgroundTask = Observable.fromCallable(() -> {    //fromCallable : 비동기 실행방식
             //doInBackground
             try {
@@ -169,12 +156,9 @@ public class MainActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((result) -> {
-//            @Override
-//            public void accept(HashMap<String, String> stringStringHashMap) throws Throwable {
                 //onPostExecute
                 if(!ErrorCode.equals("")) {
                 //데이터 없음.
-
                 } else {
                     switch(Data_Mode) {
                         case "1":
@@ -186,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 backgroundTask.dispose();
-//            }
         });
     }
 
